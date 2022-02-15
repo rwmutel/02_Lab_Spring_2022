@@ -8,10 +8,10 @@ from email import header
 import json
 from textwrap import indent
 import requests
+from bearer import BEARER
 
 
 def get_friendlist(username):
-    BEARER = 'AAAAAAAAAAAAAAAAAAAAAGXFZAEAAAAAFI2aTvd7hEHnawFvGivv4dM6G%2BI%3D27XV4r54LYViuhiI1aa83cacNI2OjLbyWbN5Rn8LP1my82FrPt'
     BASE_URL = 'https://api.twitter.com/'
     search_headers = {
         'Authorization': f'Bearer {BEARER}'
