@@ -3,9 +3,37 @@
 A simple console application, that let's the user explore .json file
 """
 
+from base64 import encode
+from email import header
 import json
+from textwrap import indent
+import requests
 
-from numpy import isin
+
+def get_friendlist(username):
+    BEARER = 'AAAAAAAAAAAAAAAAAAAAAGXFZAEAAAAAFI2aTvd7hEHnawFvGivv4dM6G%2BI%3D27XV4r54LYViuhiI1aa83cacNI2OjLbyWbN5Rn8LP1my82FrPt'
+    BASE_URL = 'https://api.twitter.com/'
+    search_headers = {
+        'Authorization': f'Bearer {BEARER}'
+    }
+    search_params = {
+        'usernames': username,
+        'user.fields': 'id,name,username,location,description'
+    }
+    search_url = f'{BASE_URL}2/users/by'
+    response = requests.get(search_url, headers=search_headers, params=search_params)
+    user_id = response.json()['data'][0]['id']
+
+    search_params = {
+        'max_results': 200,
+        'user.fields': 'name,username,location'
+    }
+    search_url = f'{BASE_URL}2/users/{user_id}/followers'
+    response = requests.get(search_url, search_params, headers=search_headers)
+    with open('second/friends.json', 'w', encoding='utf-8') as output:
+        json.dump(response.json(), output, indent=4, ensure_ascii=False)
+
+    return response.status_code
 
 def main():
     '''
@@ -73,4 +101,5 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    print(get_friendlist('serhiy_zhadan'))
+    # main()
