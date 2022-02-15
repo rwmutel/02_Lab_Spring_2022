@@ -28,7 +28,7 @@ def get_friendlist(username):
         'max_results': 200,
         'user.fields': 'name,username,location'
     }
-    search_url = f'{BASE_URL}2/users/{user_id}/followers'
+    search_url = f'{BASE_URL}2/users/{user_id}/following'
     response = requests.get(search_url, search_params, headers=search_headers)
     with open('second/friends.json', 'w', encoding='utf-8') as output:
         json.dump(response.json(), output, indent=4, ensure_ascii=False)
@@ -101,5 +101,5 @@ def main():
 
 
 if __name__ == '__main__':
-    print(get_friendlist('serhiy_zhadan'))
-    # main()
+    get_friendlist('serhiy_zhadan')
+    main()
