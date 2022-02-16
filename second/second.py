@@ -3,10 +3,7 @@
 A simple console application, that let's the user explore .json file
 """
 
-from base64 import encode
-from email import header
 import json
-from textwrap import indent
 import requests
 from bearer import BEARER
 
