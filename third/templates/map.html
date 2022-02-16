@@ -2,9 +2,22 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>{{name}} Twitter Friends Map</title>
+    <title>{{name}} Map</title>
 </head>
 <body>
-    <p>Hi! {{name}}</p>
+    <div style="margin: auto; width: 70%;">
+        <h1 align="center">The Map of <i>{{name}}</i> Follows (Friends) on Twitter</h1>
+        <h3 align="center">First 10 friends of {{name}}:</h3>
+        <div style="margin: auto; width: fit-content;">
+            <ol>
+                {% for i in range(10) %}
+                    <li><a href={{'https://twitter.com/' + friends[i]['username']}}>{{friends[i]['name']}}</a></li>
+                {% endfor %}
+            </ol>
+        </div>
+        <div style="margin: auto; width: 100%;">
+            <iframe src={{'folium_friends_map.html'}} width='100%' height="600px" frameborder="1"></iframe>
+        </div>
+    </div>
 </body>
 </html>
