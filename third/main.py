@@ -4,7 +4,6 @@ Basically just playing with FastAPI and Twitter API
 by Roman Mutel
 '''
 
-from base64 import encode
 import requests
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
@@ -31,7 +30,7 @@ def get_friendlist(username: str):
         username (str): user's name on Twitter
 
     Returns:
-        list: list of user friends
+        list: list of user friends (as objects with location, id, name and username)
     """
 
     BASE_URL = 'https://api.twitter.com/'
@@ -55,9 +54,11 @@ def get_friendlist(username: str):
 
     return response.json()['data']
 
+
 @app.get('/map/folium_friends_map.html', response_class=HTMLResponse)
 async def return_map(request: Request):
     return templates.TemplateResponse('folium_friends_map.html', {'request': request})
+
 
 @app.get('/map/{username}', response_class=HTMLResponse)
 async def read_item(request: Request, username: str):
