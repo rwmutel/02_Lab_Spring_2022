@@ -6,6 +6,8 @@ The third part of the second lab this semester was to develop a basic web app, w
 ### Technologies and Libraries Used
 
 - **FastAPI** for creating a simple web server
+- **Jinja** for managing the templates
+- **Uvicorn** for deploying the development server
 - **Twitter API** for getting data from Twitter
 - **Nominatim** for geocoding locations
 - **Folium** for creating a web map with python
@@ -13,6 +15,9 @@ The third part of the second lab this semester was to develop a basic web app, w
 ### Usage
 
 **Note:** first of all you have to generate bearer token at [developer.twitter.com](https://developer.twitter.com/en/products/twitter-api) and put it as BEARER variable in bearer.py.
+
+To start a local server, type `uvicorn main:app --host 0.0.0.0 --port 80` into the command line.
+Then go to the localhost address.
 
 At the root ('/') user is suggested to enter someone's Twitter username.
 
@@ -27,4 +32,4 @@ Finally, the map.html template page is rendered with an .html map inside of ifra
 
 ### Summary
 
-Doing this interesting project I learned the basics of launching a web server (using FastAPI) and getting data with the API (using requests library)
+Doing this interesting project I learned the basics of deploying a development server (using FastAPI and Uvicorn) and getting data with the API (using requests library)
